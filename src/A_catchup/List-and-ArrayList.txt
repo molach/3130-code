@@ -1,0 +1,76 @@
+We all know (or should know...) how to use ArrayLists.
+
+You should know that ArrayList<E> is a generic class,
+so we specify the desired element type inside angle brackets.
+For example, to create an ArrayList of Strings, we say:
+  ArrayList<String> list = new ArrayList<String>();
+Actually, once we've specified "String" (or whatever type)
+on the left-hand side, we don't have to specify it on the
+right-hand side, so we can just say:
+  ArrayList<String> list = new ArrayList<>();
+Similarly, if we call a method m whose parameter is an
+ArrayList<String>, we can call it al follows:
+m(new ArrayList<>());
+
+You should also know that the element type (which we place
+inside the angle brackets) must be a reference type. That is,
+it cannot be any of the eight primitive types, such as int,
+double, boolean, or char. If we want a list of integers,
+for example, we have to use the Integer wrapper type, as in:
+  ArrayList<Integer> list = new ArrayList<>();
+
+You should already know the following ArrayList<E> methods:
+- public int size()
+- public boolean isEmpty()
+- public boolean add(E e) // appends at end
+- public boolean contains(Object o)
+- public boolean remove(Object o) // removes first occurrence
+- public String toString() // format: [a, b, c]
+- public void add(int index, E element) // inserts at index
+- public E remove(int index)
+- public E get(int index)
+- public E set(int index, E element) // replace
+- public int indexOf(Object o) // index of first occurrence
+- public int lastIndexOf(Object o) // index of last occurrence
+
+// issue with ArrayList<Integer>
+ArrayList<Integer> list = new ArrayList<>(List.of(5, 10, 15));
+list.remove(5); // throws IndexOutOfBoundsException
+// solution:
+list.remove(Integer.valueOf(5));
+IO.println(list); // [10, 15]
+
+ArrayList inherits from an interface named List.
+We will discuss this interface at a later date.
+
+The List interface has a static method named "of".
+It has a vararg parameter.
+This method allows you to pass to it any number of items,
+and it returns a List that contains all of those items,
+in the order in which they were provided.
+For example:
+    List<Integer> list = List.of(7, 10, 5);
+    IO.println(list);        // [7, 10, 5]
+
+List.of is an example of a static factory method: a static
+method in a class or interface that returns an object of
+that class or interface.
+
+The ArrayList class has a few constructors.
+One is a no-arg constructor: new ArrayList<>()
+Another constructor has takes a List as its parameter.
+(Actually, it takes a Collection, but a List is a kind
+of Collection, as we'll discuss at a later date.)
+This constructor takes all the elements from the provided
+List and adds them to the newly-created ArrayList. So,
+instead of writing:
+    ArrayList<String> list = new ArrayList<>();
+    list.add("a");
+    list.add("b");
+    list.add("c");
+we can write, much more concisely:
+    ArrayList<String> list = new ArrayList<>(List.of("a", "b", "c"));
+
+Later, we'll see that an even better way is the following,
+using List as the variable type:
+    List<String> list = new ArrayList<>(List.of("a", "b", "c"));
