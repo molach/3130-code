@@ -1,5 +1,11 @@
 package A_catchup;
 
+/*
+Dynamic binding: When an overridden method is called, the determination of which
+version should be executed is performed at runtime, and the decision is made
+automatically based on the type of object (not the type of variable).
+ */
+
 class Animal {
     void makeSound() {
         IO.print("Animal... ");
@@ -39,9 +45,10 @@ class DynamicBindingDemo {
         a2.makeSound(); // Cat...
         a3.makeSound(); // Animal... barks
 
-        // cannot do: a3.chewBone();
+        // cannot do:
+        // a3.chewBone();
 
-        System.out.println();
+        IO.println();
 
         Animal[] animals = {
                 new Animal(),

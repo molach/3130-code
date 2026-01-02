@@ -9,7 +9,7 @@ on the left-hand side, we don't have to specify it on the
 right-hand side, so we can just say:
   ArrayList<String> list = new ArrayList<>();
 Similarly, if we call a method m whose parameter is an
-ArrayList<String>, we can call it al follows:
+ArrayList<String>, we can call it as follows:
 m(new ArrayList<>());
 
 You should also know that the element type (which we place
@@ -29,24 +29,17 @@ You should already know the following ArrayList<E> methods:
 - public void add(int index, E element) // inserts at index
 - public E remove(int index)
 - public E get(int index)
-- public E set(int index, E element) // replace
+- public E set(int index, E element) // replaces and returns old element
 - public int indexOf(Object o) // index of first occurrence
 - public int lastIndexOf(Object o) // index of last occurrence
-
-// issue with ArrayList<Integer>
-ArrayList<Integer> list = new ArrayList<>(List.of(5, 10, 15));
-list.remove(5); // throws IndexOutOfBoundsException
-// solution:
-list.remove(Integer.valueOf(5));
-IO.println(list); // [10, 15]
 
 ArrayList inherits from an interface named List.
 We will discuss this interface at a later date.
 
 The List interface has a static method named "of".
-It has a vararg parameter.
-This method allows you to pass to it any number of items,
-and it returns a List that contains all of those items,
+It has a vararg parameter, which means that the method
+allows you to pass to it any number of items.
+The method returns a List that contains all of those items,
 in the order in which they were provided.
 For example:
     List<Integer> list = List.of(7, 10, 5);
@@ -57,8 +50,8 @@ method in a class or interface that returns an object of
 that class or interface.
 
 The ArrayList class has a few constructors.
-One is a no-arg constructor: new ArrayList<>()
-Another constructor has takes a List as its parameter.
+One is a no-arg constructor: new ArrayList<>().
+Another constructor takes a List as its parameter.
 (Actually, it takes a Collection, but a List is a kind
 of Collection, as we'll discuss at a later date.)
 This constructor takes all the elements from the provided
@@ -70,7 +63,16 @@ instead of writing:
     list.add("c");
 we can write, much more concisely:
     ArrayList<String> list = new ArrayList<>(List.of("a", "b", "c"));
+(This is an example of a copy constructor.)
 
 Later, we'll see that an even better way is the following,
 using List as the variable type:
     List<String> list = new ArrayList<>(List.of("a", "b", "c"));
+
+Interesting issue with ArrayList<Integer>:
+    ArrayList<Integer> list = new ArrayList<>(List.of(5, 10, 15));
+    IO.println(list); // [5, 10, 15]
+    list.remove(5); // throws IndexOutOfBoundsException
+solution:
+    list.remove(new Integer(5));
+    IO.println(list); // [10, 15]

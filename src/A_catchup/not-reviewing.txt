@@ -23,6 +23,6 @@ We are also not going to review the following 3115 topics:
 - wrapper classes: Integer, Double, Boolean, etc.
 - ArrayList methods:
     add (both versions), remove (both versions),
-    set, get, contains, size, isEmpty
+    set, get, contains, size, isEmpty, indexOf
 - exceptions: throwing, try-catch
 - basic recursion (involving arithmetic or Strings)
