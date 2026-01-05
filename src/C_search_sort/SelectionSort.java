@@ -19,11 +19,11 @@ The algorithm in more detail:
 - Repeat until all values are in their proper places.
 
 original array: {12, 123, 1, 28, 183, 16}
-after pass 1:   {1, | 123, 12, 28, 183, 16}
-after pass 2:   {1, 12, | 123, 28, 183, 16}
-after pass 3:   {1, 12, 16, | 28, 183, 123}
-after pass 4:   {1, 12, 16, 28, | 183, 123}
-after pass 5:   {1, 12, 16, 28, 123, | 183}
+after pass 0:   {1, | 123, 12, 28, 183, 16}
+after pass 1:   {1, 12, | 123, 28, 183, 16}
+after pass 2:   {1, 12, 16, | 28, 183, 123}
+after pass 3:   {1, 12, 16, 28, | 183, 123}
+after pass 4:   {1, 12, 16, 28, 123, | 183}
 
 (After each pass, the elements to the left of the bar
 are in their final positions.)
