@@ -24,20 +24,20 @@ public class InsertionSort {
         insertionSort(arr);
     }
 
-    public static void insertionSort(int[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            int current = arr[i];
-            int j = i - 1;
-
-            while (j >= 0 && arr[j] > current) {
-                arr[j + 1] = arr[j];
-                j--;
+    public static void insertionSort(int[] a) {
+        for (int i = 1; i < a.length; i++) {
+            for (int j = i; j > 0 && a[j] < a[j - 1]; j--) {
+                swap(a, j, j - 1);
             }
 
-            arr[j + 1] = current;
-
             // for debugging:
-            // IO.println("After pass " + i + ": " + Arrays.toString(arr));
+            // IO.println("After pass " + i + ": " + Arrays.toString(a));
         }
+    }
+
+    private static void swap(int[] arr, int index1, int index2) {
+        int temp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = temp;
     }
 }
