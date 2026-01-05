@@ -11,11 +11,6 @@ two subarrays around the pivot. Don't do anything to a subarray of length
  */
 
 public class QuickSort {
-    static void main() {
-        int[] arr = {2, 3, 0, 5, 6, 1, -2, 3, 14, 12};
-        quickSort(arr);
-    }
-
     public static void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
     }
