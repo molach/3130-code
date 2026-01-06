@@ -1,0 +1,69 @@
+Records, classes, abstract classes, and interfaces are language mechanisms
+for defining new types.
+
+Every language feature has:
+ - syntax: grammar rules
+ - semantics: meaning
+
+Semantics of a record: an immutable, transparent carrier of data.
+Example:
+record Point(int x, int y) {}
+
+Semantics of a class:
+1. a possibly-mutable carrier of data.
+   Example: StringBuilder
+   Another example:
+   class BankAccount {
+       private int balance = 0;
+
+       public void deposit(int amount) {
+           balance += amount;
+       }
+   }
+2. a processor (the user doesn't care about the data, just the behavior).
+   Example: Scanner
+   Another example:
+   class Averager {
+       private double sum = 0;
+       private int count = 0;
+
+       public void add(double x) {
+           sum += x;
+           count++;
+       }
+
+       public double average() {
+           return sum / count;
+       }
+   }
+
+Semantics of an abstract class: a partial implementation:
+- has some instance fields, but others are deferred to subclasses;
+- has some concrete methods, and also some abstract methods whose implementation is deferred to subclasses.
+
+Semantics of an interface:
+1. The specification of an ADT with multiple potential implementations that have
+   the same external behavior.
+   Example: Distance, implemented by DistanceM and DistanceK. DistanceM
+   and DistanceK objects can be used interchangeably, since they have the same
+   external behavior, though their implementation details differ.
+2. The specification of an ADT with multiple potential implementations that may
+   have different behavior.
+   Example: Shape, implemented by Circle and Rectangle. A Circle cannot be used in
+   place of a Rectangle, and vice versa, though they both are kinds of Shape.
+3. The specification of a common property or behavior that is exhibited by many
+   non-related types of objects. For example, consider:
+   class Animal {}
+   interface Edible {}
+   class Chicken extends Animal implements Edible {}
+   class Apple implements Edible {}
+   It doesn't make sense for Chicken and Apple to have a common superclass, since
+   they don't have much in common. However, they both have the property of being edible.
+   So we make Chicken and Apple implement an Edible interface.
+   Question: why not just make Edible a class instead of an interface?
+   Answer: If Edible would be a class, then Chicken wouldn't be able to inherit from
+   both Animal and Edible.
+   Question: why not make Animal inherit from Edible?
+   Answer: not all animals are considered edible.
+   Another example: Comparable, which is implemented by classes such as String,
+   Integer, File, LocalDate etc. We will discuss Comparable in detail later.
