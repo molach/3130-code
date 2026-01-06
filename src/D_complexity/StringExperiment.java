@@ -72,7 +72,7 @@ public class StringExperiment {
             String temp = repeat2('-', n);
             long endTime = System.currentTimeMillis();
             long elapsed = endTime - startTime;
-            IO.println("n: %,12d took %,12d milliseconds%n".formatted(n, elapsed));
+            IO.println("n: %,12d took %,12d milliseconds".formatted(n, elapsed));
             n *= 2;                                // double the problem size
         }
 
@@ -83,7 +83,7 @@ public class StringExperiment {
             String temp = repeat1('-', n);
             long endTime = System.currentTimeMillis();
             long elapsed = endTime - startTime;
-            IO.println("n: %,12d took %,12d milliseconds%n".formatted(n, elapsed));
+            IO.println("n: %,12d took %,12d milliseconds".formatted(n, elapsed));
             n *= 2;                                // double the problem size
         }
     }

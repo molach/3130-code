@@ -12,7 +12,6 @@ void main() {
 // = 2 + 1 + 2n + n - 1 + 4 * (n - 1) + 1
 // = 2n + n + 4n + 2 + 1 - 1 - 4 + 1
 // = 7n - 1
-// We ignore constants in complexity analysis.
 // We say that this method has a running time of O(n).
 double max(double[] arr) {
     double maxSoFar = arr[0];
@@ -49,29 +48,31 @@ void m2(int n) {
     IO.println(sum);
 }
 
-//   1 + n^2 + 100,000n + 1
-// = n^2 + 100,000n + 2
-// O(n^2 + n), which we write as: O(n^2)
+//   1 + 5n^2 + 100n + 1
+// = 5n^2 + 100n + 2
+// which is O(n^2)
 void m3(int n) {
     int sum = 0;
-    for (int i = 0; i < n * n; i++) { // n^2 times
+
+    for (int i = 0; i < 5 * n * n; i++) { // 5n^2 times
         sum++;
     }
 
-    for (int i = 0; i < 100_000 * n; i++) { // 100,000*n
+    for (int i = 0; i < 100 * n; i++) { // 100n
         sum++;
     }
 
     IO.println(sum);
 }
 
-//   1 + (n^2)*(100,000*n) + 1
-// = 100,000 * n^3 + 2
-// O(n^3)
+//   1 + (5n^2)*(100n) + 1
+// = 100n^3 + 2
+// which is O(n^3)
 void m4(int n) {
     int sum = 0;
-    for (int i = 0; i < n * n; i++) { // n^2 times
-        for (int j = 0; j < 100_000 * n; j++) { // 100,000*n times
+
+    for (int i = 0; i < 5 * n * n; i++) { // 5n^2 times
+        for (int j = 0; j < 100 * n; j++) { // 100n times
             sum++;
         }
     }
@@ -83,11 +84,13 @@ void m4(int n) {
 // O(n^3)
 void m5(int n) {
     int sum = 0;
+
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n * n; j++) {
             sum++;
         }
     }
+
     IO.println(sum);
 }
 
@@ -147,9 +150,9 @@ Formula:
 = (1/2)n^2 + (1/2)n
 
 How many times does sum++ run in method m9?
-i: 1   2   3          n-3       n-2
-  5 + 6 + 7 + ... + (n-3)+4 + (n-2)+4
-= 5 + 6 + 7 + ... + (n+1) + (n+2)
+i: 1   2   3           n-3       n-2
+   5 + 6 + 7 + ... + (n-3)+4 + (n-2)+4
+=  5 + 6 + 7 + ... + (n+1) + (n+2)
 = (1 + 2 + 3 + 4 + 5 + .... + n) - (1 + 2 + 3 + 4) + (n+1) + (n+2)
 = (1/2)n^2 + (1/2)n - 10 + (n+1) + (n+2)
 which is O(n^2)
@@ -172,6 +175,42 @@ void m10(int n) {
     while (n > 1) {
         IO.println(n);
         n /= 3;
+    }
+}
+
+/*
+approximately log base 5 of n
+which is O(log n)
+*/
+void m11(int n) {
+    int a = 1;
+
+    while (a <= n) {
+        a *= 5;
+    }
+}
+
+// O(n log n)
+void m12(int n) {
+    for (int i = 0; i < n; i++) {
+        int a = 1;
+
+        while (a <= n) {
+            a *= 5;
+        }
+    }
+}
+
+// O(n)
+void m13(int n) {
+    for (int i = 0; i < n; i++) {
+
+    }
+
+    int a = 1;
+
+    while (a <= n) {
+        a *= 5;
     }
 }
 

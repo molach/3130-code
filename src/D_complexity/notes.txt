@@ -1,7 +1,7 @@
 - Every piece of code (such as a method) is associated
   with a function that indicates how many basic steps the code
   takes to do its job.
-    - Examples of basic steps: arithmetic, obtaining the value
+    - Examples of basic steps: arithmetic, comparisons, obtaining the value
       of a variable, assigning to a variable, obtaining value
       of an element in array via its index, assigning to an element
       of array, calling a method (plus the steps performed by the method).
@@ -19,7 +19,7 @@
 
 
 Seven typical running times, with examples,
-listed from best (fastest)to worst (slowest):
+listed from best (fastest) to worst (slowest):
 - constant: O(1) [the running time is totally uninfluenced by the input size]
   - accessing any element of an array based on its index
   - ArrayList's get and size methods
@@ -48,25 +48,28 @@ Here's a very informal definition of Big Oh notation
 - A function f(n) is O(g(n)) if f(n) <= g(n) when
     - we ignore constant factors
     - we only focus on the most significant term.
-    - we only care about what happens when n is large [asymptotic analysis].
 - Examples:
     - n^2 is O(n^2) [every function is big Oh of itself]
     - Technically, n^2 is also O(n^3) and also O(n^4)
         - But we usually don't write this.
     - 100*n^2 + 45n - 3 is O(n^2)
     - n/4 is O(n), since n/4 = (1/4)*n
-    - n^3 is O(2^n), even though n^3 <= 2^n is not true for
-      small values of n, such as n=3:
+    - 156 is O(1), since 156 = 156 * 1
+    - 100^100 is O(1)
+
+We only care about what happens when n is large [asymptotic analysis].
+Example: n^3 is O(2^n), even though n^3 <= 2^n is not true for
+small values of n, such as n=3:
       n^3 = 3^3 = 27
       2^n = 2^3 = 8
-    - 156 is O(1), since 156 = 1 * 156
-    - 100^100 is O(1)
 
 Use the tightest possible bound:
 - Technically, 3n is O(n^2).
 - But we should use the big-Oh notation to characterize a
   function as closely as possible
 - So we say that 3n is O(n).
+- As another example, we said that n^3 is O(2^n), which is true,
+  but we'd usually just write O(n^3)
 
 Write big-oh notation as simply as possible:
 - Technically, 3n + 15 is O(3n + 1).
@@ -75,13 +78,15 @@ Write big-oh notation as simply as possible:
 - Similarly, we don't write things like O(100); we instead write O(1).
 
 Example:
-- Consider: program A's running time is 10*n + 100, and program B's is n^2.
+- Consider: program A's running time is 10n + 100,
+  and program B's is n^2.
 - Which is better? A, unless we're dealing with only small-sized inputs.
 
 Big-Oh can sometimes be misleading.
-- Consider: program C's running time is 1000000000*n, and program D's is n log n.
-- Just using big-Oh notation, C is better. But that would be a terrible choice
-  for any reasonably-sized input.
+- Consider: program C's running time is 1000000000n,
+  and program D's is n log n.
+- Just using big-Oh notation, C is better. But that would be a
+  terrible choice for any reasonably-sized input.
 
 Best case, worst case, and average case:
 - The running time of a piece of code might depend on the state of
@@ -112,11 +117,13 @@ Space complexity:
 Logarithms:
 - Log base b of n is approximately equal to the number of times
   that n can be divided by b until we reach 1 or lower.
-- In computer science, base 2 is the most common logarithm base,
+- Log base b of n is  approximately equal to the number of times
+  that x, starting at 1, can be multiplied by b until we reach n.
+- In computer science, 2 is the most common logarithm base,
   so we write log base 2 of n as just log n.
 - When using big-Oh notation, a log of any base can be simplified
   to log base 2, since logs of different bases differ only by a
   constant factor, due to the "change of base formula":
                   1
-  log_b(a) = ---------- * log_d(a)
+  log_b(n) = ---------- * log_d(n)
               log_d(b)
