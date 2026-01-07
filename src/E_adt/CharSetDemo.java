@@ -14,6 +14,6 @@ void main() {
         set.add(ch);
     }
 
-    IO.println(set.size()); // the number of distinct characters in s
-    IO.println(set); // the distinct characters of s in some order
+    IO.println("There are " + set.size() + " distinct characters");
+    IO.println("They are: " + set); // the distinct characters in some order
 }

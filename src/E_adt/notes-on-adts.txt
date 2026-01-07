@@ -19,14 +19,10 @@ as long as the methods work correctly.
 The operations of an abstract type are classified as follows:
 - Creators: create new objects of the type. A creator may take values of
   other types as arguments, but not an object of the type being constructed.
-  Example: new StringBuilder(), new StringBuilder(String s)
 - Producers: also create new objects of the type, but require one or more
   existing objects of the type as input.
-  Example: StringBuilder's substring method.
 - Observers: take objects of the type and return objects of a different type.
-  Example: StringBuilder's length method.
 - Mutators: modify objects.
-  Example: StringBuilder's append method.
 
 Here are some examples of abstract data types, along with some of their
 operations, grouped by kind.

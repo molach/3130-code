@@ -8,6 +8,7 @@ public class ArrayCharSet implements CharSet {
     /*
     Representation: the characters are stored in an array.
     The capacity is the array's length.
+    We store the size, which is usually less than the array's length.
     The elements are stored at indexes 0 through (size - 1).
     For example, if size is 3, the elements are stored at indexes 0, 1, and 2.
     We only care about what's at indexes 0 through (size - 1);

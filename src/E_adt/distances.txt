@@ -1,0 +1,1 @@
+10km 10mi 1.5mi 1.5km foo bar -5km -5mi
