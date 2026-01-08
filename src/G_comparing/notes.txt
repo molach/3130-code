@@ -1,0 +1,75 @@
+============================ The Comparable<T> interface =====================================
+
+Many unrelated types of objects have the common property of being comparable.
+"Comparable" means that given a and b, a is either less than b, greater than b,
+or equal to b.
+
+For example, Strings are comparable, so if we have any Strings s1 and s2 it
+must be that either
+- s1 is less than (alphabetically before) s2, or
+- s1 is greater than (alphabetically after) s2, or
+- s1 is equal to s2.
+
+Similarly, Integers are comparable, LocalDates are comparable, etc.
+For example, if d1 and d2 are LocalDates, it must be that either
+- d1 is less than (chronologically before) d2, or
+- d1 is greater than (chronologically after) d2, or
+- d1 is equal to d2.
+
+By contrast, two Scanners are not comparable: there's no notion of
+"less than" or "greater than" for Scanners.
+
+The String, LocalDate, and Integer classes (and many more) implement the
+Comparable interface, which specifies a method named compareTo.
+The call a.compareTo(b) returns:
+- a negative int if a is before/less than b
+- a positive int if a is after/greater than b
+- 0 if a and b are equal.
+
+We say that the Comparable interface and its compareTo method provide the
+"natural order" for objects. For example,
+the natural order of Strings is alphabetical,
+the natural order of Integers is numeric order,
+the natural order of LocalDates is chronological.
+These orders are expressed in the compareTo method of those classes.
+
+============================ The Comparator<T> interface =====================================
+
+Suppose we would like to compare objects that don't have a natural order.
+Or suppose we would like to compare objects that have a natural order in some other way.
+For example, suppose we would like to compare Strings by length instead of alphabetically.
+To do this, we create an object that inherits from the Comparator interface.
+This interface has a method named compare that takes two objects as input
+and returns an int: negative, positive, or 0, like the compareTo method.
+
+Suppose c refers to an object that inherits from the Comparator interface.
+Then c.compare(a, b) returns:
+- a negative int if a is before/less than b
+- a positive int if a is after/greater than b
+- 0 if a and b are equal.
+
+==============================================================================================
+
+compareTo vs. compare:
+
+compareTo:
+- To call compareTo, we say s1.compareTo(s2).
+- The compareTo method is built into the objects that we want to compare.
+- The compareTo method has one parameter.
+
+compare:
+- To call compare, once we have a Comparator c, we say c.compare(s1, s2).
+- The compare method is not built into the objects that we are trying to compare;
+  rather, it is part of an external Comparator.
+- The compare method has two parameters: the two objects that the Comparator is being asked to compare.
+
+Comparable vs Comparator:
+- A Comparable can compare itself to another object, e.g., "e".compareTo("y")
+- A Comparator can compare two objects, e.g., byLength.compare("e", "y")
+
+When should you implement Comparable? When you're writing a class whose objects
+you'd like to be comparable with each other.
+
+When should you implement Comparator?
+1. When you want to compare objects of a class that doesn't implement Comparable
+2. When you want to compare objects in a different way than their compareTo method specifies.
