@@ -10,8 +10,8 @@ must be that either
 - s1 is greater than (alphabetically after) s2, or
 - s1 is equal to s2.
 
-Similarly, Integers are comparable, LocalDates are comparable, etc.
-For example, if d1 and d2 are LocalDates, it must be that either
+Similarly, Integers are comparable, Dates are comparable, etc.
+For example, if d1 and d2 are Dates, it must be that either
 - d1 is less than (chronologically before) d2, or
 - d1 is greater than (chronologically after) d2, or
 - d1 is equal to d2.
@@ -19,7 +19,7 @@ For example, if d1 and d2 are LocalDates, it must be that either
 By contrast, two Scanners are not comparable: there's no notion of
 "less than" or "greater than" for Scanners.
 
-The String, LocalDate, and Integer classes (and many more) implement the
+The String, Date, and Integer classes (and many more) implement the
 Comparable interface, which specifies a method named compareTo.
 The call a.compareTo(b) returns:
 - a negative int if a is before/less than b
@@ -30,7 +30,7 @@ We say that the Comparable interface and its compareTo method provide the
 "natural order" for objects. For example,
 the natural order of Strings is alphabetical,
 the natural order of Integers is numeric order,
-the natural order of LocalDates is chronological.
+the natural order of Dates is chronological.
 These orders are expressed in the compareTo method of those classes.
 
 ============================ The Comparator<T> interface =====================================

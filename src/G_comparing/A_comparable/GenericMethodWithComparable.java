@@ -12,11 +12,11 @@ public class GenericMethodWithComparable {
         IO.println(max(integers)); // 7
 
         List<Student> studentList = List.of(new Student("Joe", 111), new Student("Jane", 222));
-        IO.println(max(studentList)); // Jane
+        IO.println(max(studentList)); // Student[name=Jane, id=222]
     }
 
     // Returns the maximum element in the list according to the elements' natural order.
-    // Examples of things we can pass to this method: List<Integer>, ArrayList<String>, List<Integer>
+    // Examples of things we can pass to this method: List<Integer>, ArrayList<String>
     // Examples of things we cannot pass to this method: List<Scanner>
     public static <E extends Comparable<E>> E max(List<E> list) {
         if (list.isEmpty()) {
