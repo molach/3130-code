@@ -27,20 +27,25 @@ default methods:
   tie) compares them using c2.
  */
 
-void main() {
+void main(String[] args) {
     String[] animals = {"dog", "bird", "cat"};
+    List<String> animalsList = new ArrayList<>(List.of("dog", "bird", "cat"));
 
     Comparator<String> alphabetically = Comparator.naturalOrder();
     IO.println(alphabetically.compare("bird", "cat")); // negative int
     IO.println(alphabetically.compare("dog", "cat"));  // positive int
     Arrays.sort(animals, alphabetically);
     IO.println(Arrays.toString(animals)); // [bird, cat, dog]
+    animalsList.sort(alphabetically);
+    IO.println(animalsList); // [bird, cat, dog]
 
     Comparator<String> alphabeticallyReversed = Comparator.reverseOrder();
     IO.println(alphabeticallyReversed.compare("bird", "cat")); // positive int
     IO.println(alphabeticallyReversed.compare("dog", "cat"));  // negative int
     Arrays.sort(animals, alphabeticallyReversed);
     IO.println(Arrays.toString(animals)); // [dog, cat, bird]
+    animalsList.sort(alphabeticallyReversed);
+    IO.println(animalsList); // [dog, cat, bird]
 
     Comparator<String> byLength = new Comparator<>() {
         @Override
