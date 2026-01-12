@@ -13,7 +13,7 @@ void main() {
     IO.println(stack.size()); // 3
     IO.println(stack); // [10, 5, 15]
     // Note that Stack's toString() lists the elements from bottom to top,
-    // unlike the usual convention, which we followed in Stack264.
+    // unlike the usual convention, which we followed in Stack3130.
 
     IO.println(stack.peek()); // 15
     IO.println(stack.peek()); // 15

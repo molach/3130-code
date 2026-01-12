@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /**
- * An implementation of the stack ADT using a dynamic array. Methods isEmpty
+ * An implementation of the stack ADT using a dynamic array. Methods isEmpty, peek,
  * and pop run in constant time; method push runs in amortized constant time.
  */
 public class ArrayStack3130<E> implements Stack3130<E> {

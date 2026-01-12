@@ -13,7 +13,7 @@ public class DelimiterMatcher {
      */
     public boolean isMatched(String expression) {
         Stack<Character> stack = new Stack<>();
-        // alternatively, we could use Stack264 and ArrayStack264/LinkedStack264
+        // alternatively, we could use Stack3130 and ArrayStack3130/LinkedStack3130
 
         for (char ch : expression.toCharArray()) {
             if (isOpeningDelimiter(ch)) {

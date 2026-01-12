@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 
 /**
  * An implementation of the stack ADT using singly-linked nodes.
- * Methods isEmpty, push, and pop run in constant time.
+ * Methods isEmpty, push, peek, and pop run in constant time.
  */
 public class LinkedStack3130<E> implements Stack3130<E> {
     // Representation: the elements are stored in a singly-linked list
