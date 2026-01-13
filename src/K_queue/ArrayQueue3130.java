@@ -100,7 +100,7 @@ public class ArrayQueue3130<E> implements Queue3130<E> {
             newArray[i] = elements[(indexOfFirst + i) % elements.length];
         }
 
-        indexOfLast = size() - 1;
+        indexOfLast = size() - 1; // call size() BEFORE updating indexOfFirst and elements
         indexOfFirst = 0;
         elements = newArray;
     }

@@ -27,7 +27,7 @@ public class LinkedQueue3130<E> implements Queue3130<E> {
     }
 
     private Node<E> head = null, tail = null;
-    int size = 0;
+    private int size = 0;
 
     @Override
     public int size() {
