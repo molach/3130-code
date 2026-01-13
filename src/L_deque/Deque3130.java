@@ -35,6 +35,8 @@ public interface Deque3130<E> extends Stack3130<E>, Queue3130<E> {
         return removeFirst();
     }
 
+    // Method of both Stack3130 and Queue3130
+
     @Override
     default E peek() {
         return getFirst();

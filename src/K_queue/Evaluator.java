@@ -68,7 +68,7 @@ public class Evaluator {
         return OPERATORS.contains(token);
     }
 
-    // Given an operator (+, -, *, /, or ^) and two operands, returns
+    // Given an operator (+, -, *, or /) and two operands, returns
     // the result of applying the given operator to the given operands.
     private static double evaluate(String operator, double operand1, double operand2) {
         return switch (operator) {

@@ -17,8 +17,8 @@ import java.util.Queue;
  * (From Building Java Programs ch. 14, with some modifications.)
  */
 public class StringSplitter {
-    private final Queue<Character> queue;
-    private String token;
+    private final Queue<Character> queue; // the characters we still need to process
+    private String token; // the next token for next() to return, or null if we've run out of tokens
 
     // better to use a Set, but we haven't covered that yet
     private static final List<Character> SPECIAL_CHARACTERS = List.of('(', ')', '+', '-', '*', '/');
