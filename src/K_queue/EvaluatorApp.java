@@ -6,7 +6,7 @@ import K_queue.Evaluator;
  */
 void main() {
     IO.println("This program evaluates fully parenthesized expressions");
-    IO.println("with the operators +, -, *, +, and ^");
+    IO.println("with the operators +, -, *, and *");
 
     String line = IO.readln("expression (return to quit)? ");
 
