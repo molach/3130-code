@@ -43,7 +43,7 @@ public class LinkedDeque3130<E> implements Deque3130<E> {
 
     @Override
     public void addFirst(E e) {
-        if (head == null) {
+        if (isEmpty()) {
             tail = head = new Node<>(e);
         } else {
             Node<E> node = new Node<>(e);
@@ -57,7 +57,7 @@ public class LinkedDeque3130<E> implements Deque3130<E> {
 
     @Override
     public void addLast(E e) {
-        if (tail == null) {
+        if (isEmpty()) {
             head = tail = new Node<>(e);
         } else {
             Node<E> node = new Node<>(e);

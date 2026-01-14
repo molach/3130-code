@@ -10,7 +10,6 @@ import L_deque.Deque3130;
 // - add, remove, get, set: O(n), but performing at most n/2 "hops" (i.e. going from node
 //   to node.next, or from node to node.previous)
 // - indexOf, lastIndexOf, toString: O(n)
-// - iterator: O(1).
 public class LinkedList3130<E> implements Deque3130<E>, List3130<E> {
     @Override
     public boolean isEmpty() {

@@ -38,7 +38,8 @@ void main() {
     List<String> strings = List.of("hello", "world", "good", "evening");
     printElements(strings);
 
-    List<Integer> integers = new ArrayList<>(List.of(2, 8, 1, 2, 9, 3, 4));
+    List<Integer> integers = new ArrayList<>(List.of(8, 2, 1, 2, 9, 3, 4));
+    printEveryOtherElement(integers); // 8 1 9 4
     removeEvenElements(integers);
     IO.println(integers); // [1, 9, 3]
 }
@@ -70,15 +71,33 @@ void main() {
     IO.println();
 }
 
+<E> void printEveryOtherElement(SequencedCollection<E> sequencedCollection) {
+    for (Iterator<E> it = sequencedCollection.iterator(); it.hasNext(); ) {
+        IO.print(it.next() + " ");
+
+        if (it.hasNext()) {
+            it.next(); // obtain the next element, thus advancing the iterator, but don't print
+        }
+    }
+}
+
 void removeEvenElements(List<Integer> list) {
+    // for (int element : list) {
+    //     if (element % 2 == 0) {
+    //         list.remove(element); // calling remove(int index)
+    //     }
+    // }
+    // IndexOutOfBoundsException
+
     // for (Integer element : list) {
     //     if (element % 2 == 0) {
-    //         list.remove(element);
+    //         list.remove(element); // calling remove(Object o)
     //     }
     // }
     // Does not work - we get a ConcurrentModificationException,
-    // which occurs when we use a method of a list to modify the size of
-    // the list while we are iterating over the list.
+    // which occurs when we use a method of a collection to modify the
+    // size of the collection while we are iterating over the collection
+    // using an iterator (even if the iterator is only behind the scenes).
 
     for (Iterator<Integer> iter = list.iterator(); iter.hasNext(); ) {
         int element = iter.next();
@@ -88,4 +107,7 @@ void removeEvenElements(List<Integer> list) {
             // Iterator's remove method removes from the list the most recent element returned by next()
         }
     }
+
+    // later, when we learn about lambda expressions, we'll see that this
+    // can be done more concisely by calling the removeIf method
 }
