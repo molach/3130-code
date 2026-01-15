@@ -1,0 +1,135 @@
+Using a hash table, we can make add(e), remove(e), and contains(e) run in O(1) time.
+How does a hash table work?
+The main idea: the position of an element is based on the value of the element.
+Let's start simple: suppose we only want to store nonnegative ints in our hash table.
+We'll have a very, very large array: over 2b elements.
+We simply store element e at index e.
+indexes:    0   1   2    3   4   5   6   7   8   9   10
+array:   [ -1, -1, -1,  -1,  4, -1, -1, -1, -1, -1,  -1, ...]
+add(4)  add(7)
+contains(7) contains(5)
+remove(6) remove(7)
+
+The problem: we waste a huge amount of memory!
+Solution: use a smaller array, and mod: element e goes at index e % arr.length
+
+indexes:   0    1    2    3   4
+array:   [ -1, 11,   7,  -1, -1]
+add(3) add(7)  add(11)
+contains(11) contains(12)
+remove(3)
+
+Problem: what if we add(6) for example? We have a collision!
+Two basic ways of designing a hash table and avoiding collisions:
+1. Probing: if an element belongs at index i, but i is not available, go to
+   some other index, such as i + 1. We will not explore this approach.
+2. Chaining: each slot in the array does not store just one element, but
+   rather a chain of elements.
+
+indexes:  0   1   2    3   4
+array:  [  ,    , | ,   ,  | ]
+                  \/       \/
+                  7        4
+                           |
+                           \/
+                           19
+add(4) add(7)  add(19)
+
+Load factor: number of elements / arr.length: 3 / 5
+On average, each chain has as many elements as the load factor.
+
+Problem with chaining: the chains can grow long.
+For example, what if the user enters only multiples of 5 -- they'll all go
+at index 0. The issue is that now the methods run in O(n).
+So we need to keep the chains short. This is done by having a max load factor,
+and whenever we go above the max, we double the length of the array and place
+the elements in new positions based on the new array length.
+Typically, a max load factor that works well is 0.75.
+
+indexes:  0   1   2    3   4
+array:  [ |,    , | ,   ,  | ]
+         \/       \/       \/
+         20       7        4
+                           |
+                           \/
+                           19
+BECOMES
+indexes:  0   1   2    3   4   5   6   7   8   9   10
+array:  [                  |           |   |   |       ]
+                          \/           \/ \/  \/
+                           4           7  19  20
+
+To allow negative integers, let element e go at index Math.abs(e) % arr.length.
+
+To allow arbitrary objects, such as Strings, Students, etc.,
+element e goes at Math.abs(e.hashCode()) % arr.length.
+
+Recall: it is legal, though not smart, to have the hashCode() method return
+the same number, e.g. 5, every time. If we do this, all elements will be in
+long chain an index 5, no matter how many times we resize, and so the running
+times would be O(n).
+
+-------------------------------------------------------------------------------
+
+interface Set<E> extends Collection<E>
+    A Set is a Collection that does not permit any duplicate elements.
+    Methods:
+    - boolean add(E e): if e is not already in the set, adds it and returns true;
+      otherwise, returns false.
+    - boolean remove(Object o): if o is in the set, removes it and returns true;
+      otherwise, returns false.
+    - boolean contains(Object o)
+    - int size()
+
+class HashSet<E> implements Set<E>
+    This is the basic implementation of Set. It uses a "hash table" to store the
+    elements. The elements have an unpredictable order.
+    Very fast: methods add(e), remove(o), and contains(o) run in O(1) time!
+    (Assuming that the elements come from a class that has a "good" hashCode()
+    method, which is the case for Integer, Double, String, and most other classes.)
+
+interface SequencedSet<E> extends Set<E>
+    A SequencedSet is a Set (so no duplicates) whose elements have a predictable
+    order.
+
+class LinkedHashSet<E> extends HashSet<E> implements SequencedSet<E>
+    The order of the elements is "insertion order."
+    It uses a "hash table" along with a linked list.
+    Still fast: methods add(e), remove(o), and contains(o) still
+    run in O(1) time, though a bit slower than HashSet.
+
+interface Map<K, V>
+    A mapping (association) between keys and values.
+    That is, a collection of entries, where each entry has a key and a value.
+    A map allows you to search for a value based on a key.
+    Duplicate keys are not allowed; duplicate values are.
+    Each key maps to exactly one value.
+    Does not extend Iterable nor Collection.
+    Some methods:
+        size()
+        isEmpty()
+        put(key, value)
+        get(key)
+        getOrDefault(key, defaultValue)
+        remove(key)
+        containsKey(o)
+        containsValue(o)
+        keySet()
+        values()
+        entrySet()
+
+interface Map.Entry<K, V> (nested in the Map interface)
+    Some methods:
+        getKey()
+        getValue()
+
+class HashMap<K, V> implements Map<K, V>
+    The basic implementation of Map.
+    When using a HashMap, all Map methods listed above, except containsValue,
+    run in O(1) time. containsValue runs in O(n) time.
+    Iterating over a view of a map (obtained from keySet(), values(), or
+    entrySet()) takes O(n) time.
+
+interface SequencedMap<K, V> extends Map<K, V>
+
+class LinkedHashMap<K, V> extends HashMap<K, V> implements SequencedMap<K, V>
