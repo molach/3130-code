@@ -1,0 +1,93 @@
+import N_trees.BinaryTreeNode;
+import N_trees.BinaryTreeMethods;
+
+void main() {
+    BinaryTreeNode<Integer> root1 = new BinaryTreeNode<>(15,
+            new BinaryTreeNode<>(6,
+                    new BinaryTreeNode<>(3),
+                    new BinaryTreeNode<>(10,
+                            new BinaryTreeNode<>(13),
+                            null)),
+            new BinaryTreeNode<>(4,
+                    new BinaryTreeNode<>(8),
+                    new BinaryTreeNode<>(2,
+                            null,
+                            new BinaryTreeNode<>(9,
+                                    new BinaryTreeNode<>(12),
+                                    null))));
+    /*
+    root1:    15
+            /    \
+           6      4
+         /  \    / \
+        3   10  8   2
+            /        \
+           13        9
+                    /
+                   12
+     */
+
+    BinaryTreeNode<Integer> root2 = new BinaryTreeNode<>(10);
+    root2.left = new BinaryTreeNode<>(23);
+    root2.right = new BinaryTreeNode<>(12);
+    root2.left.left = new BinaryTreeNode<>(9);
+    root2.left.left.right = new BinaryTreeNode<>(3);
+    /*
+            10
+           /  \
+          23  12
+         /
+        9
+         \
+          3
+    */
+
+    BinaryTreeNode<Integer> root3 = null; // empty tree
+
+    IO.println(BinaryTreeMethods.size(root1)); // 10
+    IO.println(BinaryTreeMethods.size(root2)); // 5
+    IO.println(BinaryTreeMethods.size(root3)); // 0
+
+    IO.println(BinaryTreeMethods.height(root1)); // 4
+    IO.println(BinaryTreeMethods.height(root2)); // 3
+    IO.println(BinaryTreeMethods.height(root3)); // -1
+
+    BinaryTreeMethods.printInorderTraversal(root1); // 3 6 13 10 15 8 4 2 12 9
+    IO.println();
+    BinaryTreeMethods.printPreorderTraversal(root1); // 15 6 3 10 13 4 8 2 9 12
+    IO.println();
+    BinaryTreeMethods.printPostorderTraversal(root1); // 3 13 10 6 8 12 9 2 4 15
+    IO.println();
+    BinaryTreeMethods.printLevelOrderTraversal(root1);
+    // 15
+    // 6 4
+    // 3 10 8 2
+    // 13 9
+    // 12
+
+    List<Integer> list = BinaryTreeMethods.preorderList(root1);
+    IO.println(list); // [15, 6, 3, 10, 13, 4, 8, 2, 9, 12]
+
+    /*
+    Ways to traverse (visit all nodes of) a binary tree:
+
+    1. inorder(node)
+            inorder(node.left)
+            visit node, e.g., print its data
+            inorder(node.right)
+
+    2. preorder(node)
+            visit node
+            preorder(node.left)
+            preorder(node.right)
+
+    3. postorder(node)
+            postorder(node.left)
+            postorder(node.right)
+            visit node
+
+    4. level-order, aka breadth-first:
+       level by level from top level to bottom level
+       on each level, go left to right
+     */
+}
