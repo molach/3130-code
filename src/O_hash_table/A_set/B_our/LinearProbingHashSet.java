@@ -7,7 +7,7 @@ package O_hash_table.A_set.B_our;
 import java.util.Iterator;
 import java.util.StringJoiner;
 
-public class LinearProbingHashSet3130<E> implements Set3130<E> {
+public class LinearProbingHashSet<E> implements Set3130<E> {
     private Object[] table;
     private int size;
     private final double maxLoadFactor;
@@ -16,11 +16,11 @@ public class LinearProbingHashSet3130<E> implements Set3130<E> {
     private static final double DEFAULT_MAX_LOAD_FACTOR = 0.75;
     private static final Object REMOVED = new Object();
 
-    public LinearProbingHashSet3130() {
+    public LinearProbingHashSet() {
         this(DEFAULT_INITIAL_CAPACITY, DEFAULT_MAX_LOAD_FACTOR);
     }
 
-    public LinearProbingHashSet3130(int initialCapacity, double maxLoadFactor) {
+    public LinearProbingHashSet(int initialCapacity, double maxLoadFactor) {
         if (maxLoadFactor <= 0) {
             throw new IllegalArgumentException("max load factor must be positive");
         }
