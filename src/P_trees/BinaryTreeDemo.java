@@ -1,5 +1,5 @@
-import N_trees.BinaryTreeNode;
-import N_trees.BinaryTreeMethods;
+import P_trees.BinaryTreeNode;
+import P_trees.BinaryTreeMethods;
 
 void main() {
     BinaryTreeNode<Integer> root1 = new BinaryTreeNode<>(15,
