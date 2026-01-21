@@ -1,5 +1,3 @@
-package T_lambdas;
-
 /*
 Syntax of lambda expressions:
 
@@ -34,9 +32,9 @@ More details: there are four kinds of method references:
 phonebook.Name	    Syntax	                    Lambda equivalent
 Static	    RefType::staticMethod	    (args) -> RefType.staticMethod(args)
             Math::max                   (x, y) -> Math.max(x, y)
+            IO::println                 s -> IO.println(s)
 Bound	    expr::instanceMethod	    (args) -> expr.instanceMethod(args)
             "hello"::equals             s -> "hello".equals(s)
-            System.out::println         s -> System.out.println(s)
 Unbound	    RefType::instanceMethod	    (arg0, rest) -> arg0.instanceMethod(rest)
             String::indexOf             (s, ch) -> s.indexOf(ch)
             String::length              s -> s.length()
@@ -45,80 +43,81 @@ Constructor	ClassName::new	            (args) -> new ClassName(args)
             ArrayList::new              () -> new ArrayList<>()
  */
 
-public class LambdaDemo {
-    public static void main(String[] args) {
-        /*
-        IntBinaryOperator addition = new IntBinaryOperator() {
-            @Override
-            public int apply(int a, int b) {
-                return a + b;
-            }
-        };
-         */
+import T_lambdas.IntBinaryOperator;
+import T_lambdas.StringConsumer;
 
-        IntBinaryOperator addition = (x, y) -> x + y;
-        System.out.println(addition.apply(6, 8));
-
-        int[] arr = {5, 3, 7, 1};
-        int sum = reduce(arr, 0, addition);
-        System.out.println("sum = " + sum);
-
-        int product = reduce(arr, 1, (x, y) -> x * y);
-        System.out.println("product = " + product);
-
-        // int max = reduce(arr, Integer.MIN_VALUE, (x, y) -> Math.max(x, y));
-        int max = reduce(arr, Integer.MIN_VALUE, Math::max);
-        System.out.println("max = " + max);
-
-        StringConsumer twicePrinter = s -> System.out.println(s + " " + s);
-        twicePrinter.accept("hello");
-
-        // StringConsumer printer = s -> System.out.println(s);
-        StringConsumer printer = System.out::println;
-        printer.accept("hello again");
-    }
-
+void main() {
     /*
-    public static int sum(int[] arr) {
-        int result = 0;
-
-        for (int element : arr) {
-            result = result + element;
+    IntBinaryOperator addition = new IntBinaryOperator() {
+        @Override
+        public int apply(int a, int b) {
+            return a + b;
         }
-
-        return result;
-    }
-
-    public static int product(int[] arr) {
-        int result = 1;
-
-        for (int element : arr) {
-            result = result * element;
-        }
-
-        return result;
-    }
-
-    public static int max(int[] arr) {
-        int result = Integer.MIN_VALUE;
-
-        for (int element : arr) {
-            result = Math.max(result, element);
-        }
-
-        return result;
-    }
+    };
      */
 
-    public static int reduce(int[] arr,
-                             int initial,
-                             IntBinaryOperator operator) {
-        int result = initial;
+    IntBinaryOperator addition = (x, y) -> x + y;
+    IO.println(addition.apply(6, 8));
 
-        for (int element : arr) {
-            result = operator.apply(result, element);
-        }
+    int[] arr = {5, 3, 7, 1};
+    int sum = reduce(arr, 0, addition);
+    IO.println("sum = " + sum);
 
-        return result;
+    int product = reduce(arr, 1, (x, y) -> x * y);
+    IO.println("product = " + product);
+
+    // int max = reduce(arr, Integer.MIN_VALUE, (x, y) -> Math.max(x, y));
+    int max = reduce(arr, Integer.MIN_VALUE, Math::max);
+    IO.println("max = " + max);
+
+    StringConsumer twicePrinter = s -> IO.println(s + " " + s);
+    twicePrinter.accept("hello");
+
+    // StringConsumer printer = s -> IO.println(s);
+    StringConsumer printer = IO::println;
+    printer.accept("hello again");
+}
+
+/*
+int sum(int[] arr) {
+    int result = 0;
+
+    for (int element : arr) {
+        result = result + element;
     }
+
+    return result;
+}
+
+int product(int[] arr) {
+    int result = 1;
+
+    for (int element : arr) {
+        result = result * element;
+    }
+
+    return result;
+}
+
+int max(int[] arr) {
+    int result = Integer.MIN_VALUE;
+
+    for (int element : arr) {
+        result = Math.max(result, element);
+    }
+
+    return result;
+}
+ */
+
+int reduce(int[] arr,
+                         int initial,
+                         IntBinaryOperator operator) {
+    int result = initial;
+
+    for (int element : arr) {
+        result = operator.apply(result, element);
+    }
+
+    return result;
 }

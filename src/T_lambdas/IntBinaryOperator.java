@@ -49,11 +49,11 @@ class Multiplication implements IntBinaryOperator {
 }
 
 class Main {
-    public static void main(String[] args) {
+    static void main() {
         IntBinaryOperator op = new Addition();
         IntBinaryOperator.staticPrint("hello");
         op.instancePrint("hello");
         int result = op.apply(4, 7);
-        System.out.println(result); // 11
+        IO.println(result); // 11
     }
 }

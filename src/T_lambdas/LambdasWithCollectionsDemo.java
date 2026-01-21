@@ -1,52 +1,45 @@
-package T_lambdas;
+void main() {
+    forEachDemoIterable();
+    forEachDemoMap();
+    removeIfDemo();
+    replaceAllDemo();
+}
 
-import java.util.*;
-import java.util.function.Predicate;
+// demonstrates Iterable's forEach(Consumer action) method
+void forEachDemoIterable() {
+    List<String> list = List.of("a", "b", "c");
+    list.forEach(IO::println);
+}
 
-public class LambdasWithCollectionsDemo {
-    public static void main(String[] args) {
-        forEachDemoIterable();
-        forEachDemoMap();
-        removeIfDemo();
-        replaceAllDemo();
-    }
+// demonstrates Map's forEach(BiConsumer action) method
+void forEachDemoMap() {
+    Map<Integer, String> map = Map.of(4, "a", 6, "b", 2, "c");
+    map.forEach((i, s) -> IO.println(i + " ---- " + s));
+}
 
-    // demonstrates Iterable's forEach(Consumer action) method
-    public static void forEachDemoIterable() {
-        List<String> list = List.of("a", "b", "c");
-        list.forEach(System.out::println);
-    }
+// demonstrates Collection's removeIf(Predicate filter) method
+void removeIfDemo() {
+    Set<String> set = new HashSet<>(Set.of("alpha", "bravo", "charlie"));
+    set.removeIf(s -> s.length() == 5);
+    IO.println(set); // [charlie]
 
-    // demonstrates Map's forEach(BiConsumer action) method
-    public static void forEachDemoMap() {
-        Map<Integer, String> map = Map.of(4, "a", 6, "b", 2, "c");
-        map.forEach((i, s) -> System.out.println(i + " ---- " + s));
-    }
+    List<Integer> list = new ArrayList<>(List.of(-3, -2, -1, 0, 1, 2, 3));
+    Predicate<Integer> isPositive = x -> x > 0;
+    Predicate<Integer> isEven = x -> x % 2 == 0;
+    Predicate<Integer> isPositiveOrEven = isPositive.or(isEven);
+    list.removeIf(isPositiveOrEven);
+    IO.println(list); // [-3, -1]
+}
 
-    // demonstrates Collection's removeIf(Predicate filter) method
-    public static void removeIfDemo() {
-        Set<String> set = new HashSet<>(Set.of("alpha", "bravo", "charlie"));
-        set.removeIf(s -> s.length() == 5);
-        System.out.println(set); // [charlie]
+// demonstrates List's replaceAll(UnaryOperator operator)
+void replaceAllDemo() {
+    List<String> list = new ArrayList<>(List.of("one", "two"));
+    list.replaceAll(s -> s + " more");
+    IO.println(list); // [one more, two more]
 
-        List<Integer> list = new ArrayList<>(List.of(-3, -2, -1, 0, 1, 2, 3));
-        Predicate<Integer> isPositive = x -> x > 0;
-        Predicate<Integer> isEven = x -> x % 2 == 0;
-        Predicate<Integer> isPositiveOrEven = isPositive.or(isEven);
-        list.removeIf(isPositiveOrEven);
-        System.out.println(list); // [-3, -1]
-    }
+    list.replaceAll(String::toUpperCase);
+    IO.println(list); // [ONE MORE, TWO MORE]
 
-    // demonstrates List's replaceAll(UnaryOperator operator)
-    public static void replaceAllDemo() {
-        List<String> list = new ArrayList<>(List.of("one", "two"));
-        list.replaceAll(s -> s + " more");
-        System.out.println(list); // [one more, two more]
-
-        list.replaceAll(String::toUpperCase);
-        System.out.println(list); // [ONE MORE, TWO MORE]
-
-        list.replaceAll(s -> "a");
-        System.out.println(list); // [a, a]
-    }
+    list.replaceAll(s -> "a");
+    IO.println(list); // [a, a]
 }

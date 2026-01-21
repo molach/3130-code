@@ -15,9 +15,9 @@ public class UnmodifiableViewCollectionDemo {
 
         list.add(4);
         list.set(1, 10);
-        System.out.println(list); // [1, 10, 3, 4]
+        IO.println(list); // [1, 10, 3, 4]
 
-        System.out.println(unmodifiableView); // [1, 10, 3, 4]   <--- note!
+        IO.println(unmodifiableView); // [1, 10, 3, 4]   <--- note!
 
 
         SecurityEventLog eventLog = new SecurityEventLog();
@@ -30,7 +30,7 @@ public class UnmodifiableViewCollectionDemo {
         // we should not be able to remove items from a SecurityEventLog!
         // the getEvents() method can prevent this by returning an
         // unmodifiable view of the underlying list.
-        System.out.println(eventLog.getEvents());
+        IO.println(eventLog.getEvents());
     }
 }
 
